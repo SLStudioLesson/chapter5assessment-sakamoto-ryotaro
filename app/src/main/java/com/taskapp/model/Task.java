@@ -6,6 +6,7 @@ public class Task {
     private int status;
     private User repUser;
 
+
     public Task(int code, String name, int status, User repUser) {
         this.code = code;
         this.name = name;
@@ -28,7 +29,6 @@ public class Task {
     public User getRepUser() {
         return this.repUser;
     }
-
     public void setStatus(int status) {
         this.status = status;
     }

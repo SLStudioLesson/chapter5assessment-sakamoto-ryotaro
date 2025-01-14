@@ -8,6 +8,7 @@ import com.taskapp.dataaccess.UserDataAccess;
 import com.taskapp.model.Task;
 import com.taskapp.model.User;
 
+
 public class TaskLogic {
     private final TaskDataAccess taskDataAccess;
     private final LogDataAccess logDataAccess;
@@ -57,9 +58,11 @@ public class TaskLogic {
                 status = "不明";
                 break;
         }
+        User user = task.getRepUser();
+        String userName = (user!= null && user.getCode() == loginUser.getCode()) ? "あなたが担当しています" : user.getName() + "が担当しています";
         System.out.println(task.getCode() + ". タスク名：" + task.getName() + ", 担当者名：" +
-            user.getName() + "が担当しています, "+"ステータス："+status);
-    })
+            userName + "が担当しています, "+"ステータス："+status);
+    });
     }
 
     /**
@@ -74,9 +77,10 @@ public class TaskLogic {
      * @param loginUser ログインユーザー
      * @throws AppException ユーザーコードが存在しない場合にスローされます
      */
-    // public void save(int code, String name, int repUserCode,
-    //                 User loginUser) throws AppException {
-    // }
+    public void save(int code, String name, int repUserCode,
+                    User loginUser) throws AppException {
+        User repUser = new UserDataAccess().findByCode(userCode);                
+    }
 
     /**
      * タスクのステータスを変更します。
