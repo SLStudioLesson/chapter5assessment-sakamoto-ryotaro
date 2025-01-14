@@ -1,5 +1,8 @@
 package com.taskapp.dataaccess;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class TaskDataAccess {
 
     private final String filePath;
@@ -19,6 +22,27 @@ public class TaskDataAccess {
     public TaskDataAccess(String filePath, UserDataAccess userDataAccess) {
         this.filePath = filePath;
         this.userDataAccess = userDataAccess;
+        
+        public List<Task> findAll(){
+            List<Task> tasks = new ArrayList<>();
+            try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+                String line;
+                reader.readLine();
+                while((line = reader.readLine())!=null){
+                    String[] values = line.split(",");
+                    if(values.length != 4){
+                        continue;
+                    }
+                    int code = (Integer.parseInt(values[0]);
+                    String name = values[1];
+                    int status = Integer.parseInt(values[2]);
+                    int repUserCode = new Task(code,name,status,repUserConde);
+                    tasks.add(task);
+                }
+            }catch (IOException E){
+                return tasks;
+            }
+        }
     }
 
     /**
